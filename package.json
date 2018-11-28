@@ -1,0 +1,54 @@
+{
+  "name": "material-grid",
+  "version": "0.1.0",
+  "description": "Another try to make simple grid component",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "webpack-dev-server --config webpack.config.js --progress --colors --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vovakulikov/material-grid.git"
+  },
+  "keywords": [
+    "grid-component",
+    "material-ui",
+    "grid"
+  ],
+  "author": "vovakulikov@icloud.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vovakulikov/material-grid/issues"
+  },
+  "homepage": "https://github.com/vovakulikov/material-grid#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
+    "fork-ts-checker-webpack-plugin": "^0.4.15",
+    "html-webpack-plugin": "^3.2.0",
+    "react-hot-loader": "^4.3.12",
+    "style-loader": "^0.23.1",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "typescript": "^3.1.6",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.6.0",
+    "@types/react": "^16.7.6",
+    "@types/react-dom": "^16.0.9",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  }
+}
