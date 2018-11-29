@@ -11,12 +11,12 @@ export type GridHeaderProps = {
   order: SortDirection;
   numSelected: number;
   rowCount: number;
-  rows: any[];
+  columns: any[];
   onSelectAllClick: React.EventHandler<React.SyntheticEvent>;
-  createSortHandler: (property: string) => React.EventHandler<React.SyntheticEvent>;
+  onRequestSort: (property: string) => React.EventHandler<React.SyntheticEvent>;
 };
 
-export function GridHeader(props: GridHeaderProps) {
+export default function GridHeader(props: GridHeaderProps) {
 
   const {
     onSelectAllClick,
@@ -24,10 +24,12 @@ export function GridHeader(props: GridHeaderProps) {
     orderBy,
     numSelected,
     rowCount,
-    rows,
-    createSortHandler,
+    columns,
+    onRequestSort,
   } = props;
+
   const normilizedOrder = order ? order : undefined;
+
   return (
     <TableHead>
       <TableRow>
@@ -39,7 +41,7 @@ export function GridHeader(props: GridHeaderProps) {
           />
         </TableCell>
         {
-          rows.map((row: any) => {
+          columns.map((row: any) => {
             return (
               <TableCell
                 key={row.id}
@@ -55,7 +57,7 @@ export function GridHeader(props: GridHeaderProps) {
                   <TableSortLabel
                     active={orderBy === row.id}
                     direction={normilizedOrder}
-                    onClick={createSortHandler(row.id)}
+                    onClick={onRequestSort(row.id)}
                   >
                     {row.label}
                   </TableSortLabel>
