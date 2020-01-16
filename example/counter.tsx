@@ -20,7 +20,7 @@ export default class Counter extends Component<CounterProps, CounterState> {
   }
 
   private handleIncrement = () => {
-    console.log('Hello world122');
+    console.log('Hello world');
     console.log('Hello world122');
     this.setState({ value: this.state.value + 10 });
   }

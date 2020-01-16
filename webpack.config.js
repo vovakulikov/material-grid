@@ -23,7 +23,26 @@ module.exports = {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         use: ["babel-loader"],
-      }
+      },
+      {
+        test: /\.(scss|css)$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              modules: {
+                localIdentName: '[name]--[hash:base64:5]',
+              },
+              localsConvention: 'camelCase',
+              // localIdentName: "[name]__[local]___[hash:base64:5]"
+            },
+          },
+          'postcss-loader',
+          'sass-loader'
+        ],
+      },
     ]
   },
   plugins: [

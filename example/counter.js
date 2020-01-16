@@ -4,8 +4,9 @@ export default class Counter extends Component {
         super(...arguments);
         this.state = { value: 0 };
         this.handleIncrement = () => {
-            console.log('Hello world4');
-            this.setState({ value: this.state.value + 40 });
+            console.log('Hello world');
+            console.log('Hello world122');
+            this.setState({ value: this.state.value + 10 });
         };
         this.handleDecrement = () => this.setState({ value: this.state.value + 1 });
     }

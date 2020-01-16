@@ -4,19 +4,17 @@
     "noFallthroughCasesInSwitch": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
     "noUnusedLocals": true,
     "sourceMap": true,
     "noImplicitAny": true,
     "target": "es2015",
     "module": "es2015",
     "strict": true,
-    "jsx": "react"
+    "jsx": "react",
+    "rootDir": "./"
   },
   "include": [
-    "src/**/*",
-    "example/**/*"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
