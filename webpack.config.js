@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
@@ -33,9 +32,9 @@ module.exports = {
             options: {
               importLoaders: 2,
               modules: {
-                localIdentName: '[name]--[hash:base64:5]',
+                localIdentName: '[local]--[hash:base64:5]',
               },
-              localsConvention: 'camelCase',
+              localsConvention: 'dashes',
               // localIdentName: "[name]__[local]___[hash:base64:5]"
             },
           },

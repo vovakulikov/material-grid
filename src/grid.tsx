@@ -1,10 +1,12 @@
 import * as React from 'react';
+import memoizeOne from 'memoize-one';
 
 import DefinitionColGroup from './rows/definition-row';
-import { IColumnId, IGridProps } from './grid-props';
-// [TODO] [VK] Maybe we need move to zero runtime css in js solution
-import './grid.scss';
+import { IColumnId, IColumnMap, IGridProps } from './grid-props';
 
+import styles from './grid.scss';
+
+console.log(styles);
 class GridComponent<T extends IColumnId> extends React.Component<IGridProps<T>> {
 
   static defaultProps = {
@@ -13,51 +15,71 @@ class GridComponent<T extends IColumnId> extends React.Component<IGridProps<T>> 
     rows: [],
   };
 
+  getTotalWidth = memoizeOne((columnId: Array<T>, columnMap: IColumnMap<T>) =>
+    columnId.reduce(
+        (width, columnId) => {
+          const columnWidth = columnMap[columnId] !== undefined ? columnMap[columnId].width : 0;
+          return width + columnWidth;
+        },
+        0,
+    ),
+  );
+
   render() {
     const { columnIds, columnMap, rows } = this.props;
+    const totalWidth = this.getTotalWidth(columnIds, columnMap);
 
     return (
-      <div className="grid">
-        <table className="grid__header-table">
+      <div className={styles.grid}>
 
-          <DefinitionColGroup
-            columnIds={columnIds}
-            columnMap={columnMap}
-          />
+        <div className={styles.grid__header}>
 
-          <tr>
-            <td></td>
+          <table className={styles.grid__headerTable} style={{ width: totalWidth }}>
 
-            { columnIds.map((id) => {
-              return (<th>{columnMap[id].title}</th>);
-            }) }
-          </tr>
-        </table>
-        <div className="grid__body">
+            <DefinitionColGroup
+              columnIds={columnIds}
+              columnMap={columnMap}
+            />
+            <thead>
+            <tr>
+              {/*TODO: Add a settings component here*/}
+              <th></th>
 
-          <table className="grid__body-table">
+              { columnIds.map((id) => {
+                return (<th key={id}>{columnMap[id].title}</th>);
+              }) }
+            </tr>
+            </thead>
+          </table>
+        </div>
+
+        <div className={styles.grid__body}>
+
+          <table className={styles.grid__bodyTable} style={{ width: totalWidth }}>
 
             <DefinitionColGroup
               columnIds={columnIds}
               columnMap={columnMap}
             />
 
-            {
-              rows.map((row, index) => {
-                return (
-                  <tr>
-                    <td>{index}</td>
-                    {
-                      columnIds.map((id) => {
-                        return (
-                          <td>{ row.attributes[id] }</td>
-                        );
-                      })
-                    }
-                  </tr>
-                );
-              })
-            }
+            <tbody>
+              {
+                rows.map((row, index) => {
+                  return (
+                    <tr key={row.id}>
+                      <td>{index}</td>
+                      {
+                        columnIds.map((id) => {
+                          return (
+                            <td key={id}>{ row.attributes[id] }</td>
+                          );
+                        })
+                      }
+                    </tr>
+                  );
+                })
+              }
+            </tbody>
           </table>
         </div>
         <table className="grid__footer-table"></table>
@@ -67,4 +89,3 @@ class GridComponent<T extends IColumnId> extends React.Component<IGridProps<T>> 
 }
 
 export default GridComponent;
-// export { IProps };

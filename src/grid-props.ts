@@ -5,7 +5,7 @@ export type IRowKey = string;
 export type IGridColumn = {
   id: IColumnId;
   title: string;
-  width?: number;
+  width: number;
   minWidth?: number;
   maxWidth?: number;
 };
@@ -78,6 +78,7 @@ export enum GridRowExpansion {
 }
 
 export type IGridRow<K extends IColumnId, V = IGridAttributeValue> = {
+  id: number | string;
   attributes: Record<K, V>,
   children?: Array<IGridRow<K, V>>,
 };

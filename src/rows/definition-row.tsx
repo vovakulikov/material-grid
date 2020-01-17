@@ -17,7 +17,7 @@ function DefinitionRow<T extends IColumnId>(props: IProps<T>) {
       <col style={{ width: baseCellWidth }} />
 
       { columnIds.map(id => (
-          <col style={{ width: columnMap[id].width }}/>
+          <col key={id} style={{ width: columnMap[id].width }}/>
       ))}
     </colgroup>
   );

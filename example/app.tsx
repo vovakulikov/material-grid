@@ -5,7 +5,6 @@ import Grid from '../src/grid';
 import { IGridRow, IColumnMap } from '../src/grid-props';
 
 import styles from './app.scss';
-import Counter from './counter';
 
 type IState = {
   rows: Array<IGridRow<TableColumn>>;
@@ -43,19 +42,21 @@ class App extends React.Component<Object, IState> {
     },
     rows: [
       {
+        id: 1,
         attributes: {
           [TableColumn.title]: 'Task 1',
           [TableColumn.status]: 'New',
-          hello: 2,
         },
       },
       {
+        id: 2,
         attributes: {
           [TableColumn.title]: 'Task 2',
           [TableColumn.status]: 'In develop',
         },
       },
       {
+        id: 3,
         attributes: {
           [TableColumn.title]: 'Task 3',
           [TableColumn.status]: 'Postpone',
@@ -73,10 +74,6 @@ class App extends React.Component<Object, IState> {
           columnIds={columnIds}
           columnMap={columnMap}
         />
-
-        <h1>HELLO WORLD</h1>
-
-        <Counter />
       </div>
     );
   }
